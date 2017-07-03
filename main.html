@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>Aspect ratio finder</title>
+<script type='text/javascript'>
+function gcd(a,b) {
+    a = Math.abs(a);
+    b = Math.abs(b);
+    if (b > a) {var temp = a; a = b; b = temp;}
+    while (true) {
+        if (b == 0) return a;
+        a %= b;
+        if (a == 0) return b;
+        b %= a;
+    }
+}
+function sho(){
+var wid = document.getElementById('wid').value;
+var hei = document.getElementById('hei').value;
+ if(wid==''||hei==''){
+  var has = "please input numbers!";
+ }else {
+var kpk = gcd(wid,hei);
+var has = wid/kpk + ":" + hei/kpk;
+ }
+ document.getElementById("result").innerHTML = has;
+
+}
+function KeyPress(e)
+{
+    // look for window.event in case event isn't passed in
+    e = e || window.event;
+    if (e.keyCode == 13)
+    {
+        document.getElementById('sho').click();
+        return false;
+    }
+    return true;
+}
+</script>
+</head>
+<body>
+<input type="text" name="wid" id="wid"> x <input type="text" id="hei" name="hei" onkeypress="return KeyPress(event);">
+<button onClick="sho()" id='sho'>Submit</button>
+<div id='result'>
+</div>
+</body>
+</html>
